@@ -7,14 +7,14 @@ def call(Map pipelineParams) {
             }
 
             stage('Lint') {
-                docker.image('jenkins_build_image').inside('-u root'){
+                docker.image(pipelineParams.buildImage).inside('-u root'){
                     runLinting(pipelineParams.lintDirectory)
                 }
             }
 
             stage('Build'){
-                docker.image('jenkins_build_image').inside('-u root'){
-                echo 'Build.'
+                docker.image(pipelineParams.buildImage).inside('-u root'){
+                    echo 'Build.'
                 }
             }
         }
