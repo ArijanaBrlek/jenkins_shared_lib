@@ -3,35 +3,12 @@ def call(Map pipelineParams) {
         ws("/var/jenkins_home/workspace/testing_jenkinsfile")
         {
             stage('Git checkout') {
-                checkout([
-                        $class: 'GitSCM',
-                        branches: scm.branches,
-                        doGenerateSubmoduleConfigurations: false,
-                        extensions: [[
-                        $class: 'CloneOption',
-                        noTags: false,
-                        shallow: false,
-                        depth: 0,
-                        reference: ''
-                    ]],
-                    userRemoteConfigs: scm.userRemoteConfigs,
-                ])
+                checkoutGitRepository()
             }
 
             stage('Lint') {
                 docker.image('jenkins_build_image').inside('-u root'){
-                sh "pylint --rcfile=.pylintrc --output-format=parseable ${pipelineParams.lintDirectory} > pylint.log || exit 0"
-                sh 'cat pylint.log'
-
-                step([
-                    $class: 'WarningsPublisher',
-                    parserConfigurations: [[
-                    parserName: 'PYLint',
-                    pattern   : 'pylint.log'
-                    ]],
-                    unstableTotalAll: '0',
-                    usePreviousBuildAsReference: true
-                ])
+                    runLinting(pipelineParams.lintDirectory)
                 }
             }
 
