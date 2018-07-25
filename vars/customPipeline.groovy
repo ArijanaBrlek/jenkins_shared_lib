@@ -20,7 +20,7 @@ def call(Map pipelineParams) {
 
             stage('Lint') {
                 docker.image('jenkins_build_image').inside('-u root'){
-                sh "pylint --rcfile=.pylintrc --output-format=parseable hello_world > pylint.log || exit 0"
+                sh "pylint --rcfile=.pylintrc --output-format=parseable ${pipelineParams.lintDirectory} > pylint.log || exit 0"
                 sh 'cat pylint.log'
 
                 step([
