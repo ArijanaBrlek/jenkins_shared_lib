@@ -1,6 +1,6 @@
 
 def call(lintDirectory){
-    sh "pylint --rcfile=.pylintrc ${lintDirectory} > pylint.log || exit 0"
+    sh "pylint --rcfile=.pylintrc --output-format=parseable ${lintDirectory} > pylint.log || exit 0"
     sh 'cat pylint.log'
 
     step([
