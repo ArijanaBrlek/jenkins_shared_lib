@@ -9,7 +9,7 @@ def call(lintDirectory){
         parserName: 'PYLint',
         pattern   : 'pylint.log'
         ]],
-        unstableTotalAll: '0',
+        unstableTotalAll: '50',
         usePreviousBuildAsReference: true
     ])
 }
