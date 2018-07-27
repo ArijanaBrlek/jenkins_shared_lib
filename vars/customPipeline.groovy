@@ -15,7 +15,10 @@ def call(Map pipelineParams) {
             stage('Build'){
                 docker.image(pipelineParams.buildImage).inside('-u root'){
                     echo 'Build.'
-                    sh 'tail -2 pylint.log | head -1'
+                    def pylintGrade = sh(
+                        script: 'tail -2 pylint.log | head -1'                        
+                    )
+                    echo "Pylint score: ${pylintGrade}"
                 }
             }
         }
