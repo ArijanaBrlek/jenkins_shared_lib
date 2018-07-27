@@ -20,7 +20,7 @@ def call(Map pipelineParams) {
                         returnStdout: true                        
                     ).trim()
 
-                    echo "Pylint score: ${pylintGrade}"
+                    echo "Pylint score\n: ${pylintGrade}"
                 }
             }
         }
