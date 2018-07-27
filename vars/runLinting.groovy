@@ -9,7 +9,6 @@ def call(lintDirectory){
             parserName: 'PYLint',
             pattern   : 'pylint.log'
         ]],
-        unstableTotalAll: '0',
         healthy: '0',
         canResolveRelativePaths: true,
         usePreviousBuildAsReference: true
