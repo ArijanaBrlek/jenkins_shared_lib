@@ -6,10 +6,11 @@ def call(lintDirectory){
     step([
         $class: 'WarningsPublisher',
         parserConfigurations: [[
-        parserName: 'PYLint',
-        pattern   : 'pylint.log'
+            parserName: 'PYLint',
+            pattern   : 'pylint.log'
         ]],
-        unstableTotalAll: '50',
+        healthy: '0',
+        canResolveRelativePaths: true,
         usePreviousBuildAsReference: true
     ])
 }
