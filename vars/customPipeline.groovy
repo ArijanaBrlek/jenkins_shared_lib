@@ -8,7 +8,7 @@ def call(Map pipelineParams) {
 
             stage('Lint') {
                 docker.image(pipelineParams.buildImage).inside('-u root'){
-                    runLinting(pipelineParams.lintDirectory)
+                    runLinting(pipelineParams.lintDirectories)
                 }
             }
 
