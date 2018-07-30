@@ -18,5 +18,6 @@ def call(lintDirectories){
 
 @NonCPS
 def joinArray(lintDirectories){
-  return lintDirectories.join(' ')
+    println lintDirectories.join(' ')
+    return lintDirectories.join(' ')
 }
