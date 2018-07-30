@@ -1,6 +1,6 @@
 
 def call(lintDirectories, lintLogFile){
-    sh "pylint --output-format=parseable hello_world >> ${lintLogFile}_pylint.log || exit 0"
+    sh "pylint --output-format=parseable ${lintDirectories.join(' ')} >> ${lintLogFile}_pylint.log || exit 0"
     sh "cat ${lintLogFile}_pylint.log"
 
     step([
