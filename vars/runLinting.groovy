@@ -1,6 +1,6 @@
 
 def call(lintDirectories){
-    def directories = lintDirectories.join(' ')
+    def directories = joinArray(lintDirectories)
     sh "pylint --output-format=parseable hello_world hello_world > pylint.log || exit 0"
     sh 'cat pylint.log'
 
@@ -14,4 +14,9 @@ def call(lintDirectories){
         canResolveRelativePaths: true,
         usePreviousBuildAsReference: true
     ])
+}
+
+@NonCPS
+def joinArray(lintDirectories){
+  return lintDirectories.join(' ')
 }
