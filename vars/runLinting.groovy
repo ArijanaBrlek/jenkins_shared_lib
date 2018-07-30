@@ -1,6 +1,7 @@
 
 def call(lintDirectories){
-    sh "pylint --output-format=parseable ${joinArray(lintDirectories)} > pylint.log || exit 0"
+    def directories_to_lint = joinArray(lintDirectories)
+    sh "pylint --output-format=parseable ${directories_to_lint} > pylint.log || exit 0"
     sh 'cat pylint.log'
 
     step([
