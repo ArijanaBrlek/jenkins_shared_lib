@@ -9,7 +9,7 @@ def call(lintDirectories){
         $class: 'WarningsPublisher',
         parserConfigurations: [[
             parserName: 'PYLint',
-            pattern   : 'pylint.log'
+            pattern   : 'pylint_*.log'
         ]],
         healthy: '0',
         canResolveRelativePaths: true,
