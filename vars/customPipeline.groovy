@@ -23,6 +23,10 @@ def call(Map pipelineParams) {
                     echo "Pylint score\n: ${pylintGrade}"
                 }
             }
+
+            stage ('Workspace cleanup'){
+                deleteDir()
+            }
         }
     }
 }
